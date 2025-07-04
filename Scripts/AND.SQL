@@ -12,7 +12,7 @@
 -- 03 Você precisa de todas as colunas ou somente de algumas 
     SELECT colunasSelecionadas -- (se deixar um asterisco " * ", ele seleciona todas as colunas )
     FROM nomeDasTabelas
-    WHERE condição1 AND condição2 -- (aqui o where está verificando se há duas condições)
+    WHERE condição1 AND condição2
 
 --- Exemplo usando o SQLite Playground (tabela employees modificada com mais dados...) ---
 SELECT name, age, department, job, salary
