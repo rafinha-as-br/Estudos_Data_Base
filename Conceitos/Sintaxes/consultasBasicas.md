@@ -44,6 +44,9 @@ Combina múltiplas condições.
 
 ```sql
 SELECT * FROM clientes WHERE cidade = 'SP' AND idade > 18;
+SELECT * FROM clientes WHERE cidade = 'SP' OR idade > 18;
+
+
 ```
 
 ---
