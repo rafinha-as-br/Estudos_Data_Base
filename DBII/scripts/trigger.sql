@@ -9,7 +9,7 @@
 -- 4. Para linha ou statment (FOR EACH ROW | FOR EACH STATMENT)
 -- 5. Qual a condição (WHEN)
 -- 6. Declarar o que será feito (BEGIN)
--- 7. Fechar 
+-- 7. Fechar a declaraçã do que será feito 
 
 -- *
 
