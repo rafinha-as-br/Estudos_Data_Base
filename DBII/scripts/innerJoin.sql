@@ -1,3 +1,7 @@
+--- Definição: Unir duas tabelas 
+
+
+
 -- 1) Listar todos os dados dos funcionários e os nomes dos seus respectivos departamentos
 
 select E.*, department_name
