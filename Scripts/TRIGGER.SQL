@@ -28,8 +28,13 @@ END;
 
 
 
---- Exemplo usando o Oracle SQL (esquema HR) ---
+--- Exemplo usando o Oracle SQL (esquema especial de tabelas, não citado aqui, o objetivo é que acada atualização de valor nos produtos ele vai atualizar a tabela de histórico de preços...) ---
+CREATE OR REPLACE TRIGGER TRIGGER_EXEMPLO
+AFTER UPDATE OF PRD_VALOR ON PRODUTOS
+FOR EACH ROW
+BEGIN
+	INSERT INTO HISTORICO_PRECOS (PRD_CODIGO, DATA, PRD_PRECO_ANTIGO, PRD_PRECO_NOVO, USUARIO_SISTEMA)
+	VALUES(:NEW.PRD_CODIGO, SYSDATE, :OLD.PRD_VALOR, :NEW.PRD_VALOR, USER);
+END;
 
 
-
--- Exibindo saída:
