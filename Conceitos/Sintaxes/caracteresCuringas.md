@@ -1,77 +1,42 @@
 ## 🎯 **Símbolos Curinga (Wildcards) em SQL**
 
-Os **curingas** são usados para **substituir caracteres** ao fazer buscas com **`LIKE`** (e também com `NOT LIKE`).
+Os **curingas** são usados para **substituir caracteres** ao fazer buscas com **`LIKE`** (ou `NOT LIKE`).
 
 ---
 
-### 🔹 **%** — Substitui **zero, um ou vários caracteres**
+### 📌 Tabela de Curingas
 
-* **Exemplo**:
-
-  ```sql
-  SELECT * FROM clientes WHERE nome LIKE 'Ana%';
-  ```
-
-  👉 Encontra nomes que começam com "Ana", como "Ana", "Ana Paula", "Anabela"
-
----
-
-### 🔹 **\_** (underline) — Substitui **exatamente um caractere**
-
-* **Exemplo**:
-
-  ```sql
-  SELECT * FROM produtos WHERE codigo LIKE 'A_1';
-  ```
-
-  👉 Encontra valores como "AB1", "AC1", mas **não** "A1" nem "ABC1"
+| Curinga                                  | Significado                                                         | Exemplo SQL                           | Resultado                                                         |
+| ---------------------------------------- | ------------------------------------------------------------------- | ------------------------------------- | ----------------------------------------------------------------- |
+| `%`                                      | Substitui **zero, um ou vários caracteres**                         | `WHERE nome LIKE 'Ana%'`              | Encontra: `Ana`, `Ana Paula`, `Anabela`                           |
+| `_`                                      | Substitui **exatamente um caractere**                               | `WHERE codigo LIKE 'A_1'`             | Encontra: `AB1`, `AC1` → mas não `A1` nem `ABC1`                  |
+| `[ ]` *(SQL Server / Oracle)*            | Corresponde a **qualquer caractere dentro dos colchetes**           | `WHERE nome LIKE 'Teclad[ae]'`        | Encontra: `Teclada`, `Teclade`                                    |
+| `[^ ]` ou `[! ]` *(SQL Server / Oracle)* | Corresponde a **qualquer caractere exceto os listados**             | `WHERE nome LIKE '[^A]%'`             | Retorna nomes que **não começam com A**                           |
+| `ESCAPE`                                 | Define um caractere de escape para usar `%` ou `_` como **literal** | `WHERE codigo LIKE 'A\_%' ESCAPE '\'` | Encontra valores que começam com `A_` (sem usar `_` como curinga) |
 
 ---
 
-### 🔹 **\[ ]** — Corresponde a **qualquer caractere dentro dos colchetes**
+### ⚡ Importante
 
-(*Nem todos os bancos suportam, mas alguns como SQL Server sim*)
-
-* **Exemplo**:
-
-  ```sql
-  SELECT * FROM produtos WHERE nome LIKE 'Teclad[ae]';
-  ```
-
-  👉 Encontra "Teclada" ou "Teclade"
+* O uso de curingas **pode deixar a consulta mais lenta**, especialmente com `%` no início (`'%abc'`).
+* São usados **apenas com `LIKE` ou `NOT LIKE`**.
+* Para buscas mais avançadas (expressões regulares), alguns bancos oferecem `REGEXP` ou `SIMILAR TO`.
 
 ---
 
-### 🔹 **\[^ ] ou \[! ]** — Exclui caracteres do conjunto
-
-(*usado em alguns SGBDs, como o `!` no SQL Server*)
-
-* **Exemplo**:
-
-  ```sql
-  SELECT * FROM nomes WHERE nome LIKE '[^A]%';
-  ```
-
-  👉 Retorna nomes que **não** começam com a letra A
-
----
-
-### 📌 **Importante:**
-
-* O uso de curingas **pode deixar a consulta mais lenta**, principalmente com `%` no início do padrão (`'%abc'`)
-* São usados **somente com `LIKE` ou `NOT LIKE`**
-
----
-
-### ✅ Exemplos variados:
+### ✅ Exemplos variados
 
 ```sql
-SELECT * FROM arquivos WHERE nome LIKE 'relatorio_202_.pdf';
--- Encontra: relatorio_2021.pdf, relatorio_2022.pdf...
-
-SELECT * FROM usuarios WHERE email LIKE '%@gmail.com';
 -- Termina com @gmail.com
+SELECT * FROM usuarios 
+WHERE email LIKE '%@gmail.com';
 
-SELECT * FROM produtos WHERE nome NOT LIKE 'TV%';
--- Nome não começa com "TV"
+-- Nome não começa com TV
+SELECT * FROM produtos 
+WHERE nome NOT LIKE 'TV%';
+
+-- Relatórios com um dígito no ano
+SELECT * FROM arquivos 
+WHERE nome LIKE 'relatorio_202_.pdf';
+-- Encontra: relatorio_2021.pdf, relatorio_2022.pdf...
 ```
