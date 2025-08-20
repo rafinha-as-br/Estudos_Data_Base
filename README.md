@@ -1,1 +1,1 @@
-Aqui virá um futuro esquema mostrando como funciona o repositório completo
+Aqui virá um futuro esquema mostrando como funciona o repositório completo, será mostrado qual é a estrutura e organização
