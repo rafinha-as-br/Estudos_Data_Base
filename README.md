@@ -1,1 +1,1 @@
-Aqui virá um futuro esquema mostrando como funciona o repositório por todo
+Aqui virá um futuro esquema mostrando como funciona o repositório completo
