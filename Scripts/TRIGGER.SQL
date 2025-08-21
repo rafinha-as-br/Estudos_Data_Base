@@ -15,9 +15,11 @@ CREATE OR REPLACE TRIGGER NOMEDOTRIGGER
 -- 5. Qual a condição? (WHEN)
 WHEN (condição)
 
--- Não é obrigatório, mas pode ser que precisa de uma variável local
+-- Não é obrigatório, mas pode ser que precisa de uma variável local, se você for declarar mais de uma variável, separe ela com um ponto e vírgula ' ; '.
+  -- Dá pra utilizar esse declare de várias formas, uma forma clássica de utilizar ele é criar variáveis e armazenar valores que são puxados através de um SELECT, o problema é que você vai precisar saber o tamanho dos varchar(tamanho) se precisar pegar um varchar.
+  -- Há uma maneira fácil de pegar valores de tabelas fora do trigger, basta utilizar o seguinte comando: NOME_DA_VARIAVEL TABELA.COLUNA%TYPE; (O %type serve para deixar a variável do mesmo tamanho que a coluna da tabela está)
 DECLARE 
-  nome_variavel tipo_de_variavel;
+  nome_variavel tipo_de_variavel; nome_variavel tipo_de_variavel;
 
 -- 6. Declarar o que será feito (BEGIN)
 BEGIN
@@ -37,4 +39,4 @@ BEGIN
 	VALUES(:NEW.PRD_CODIGO, SYSDATE, :OLD.PRD_VALOR, :NEW.PRD_VALOR, USER);
 END;
 
-
+-- Falta colocar sobre o uso de dois pontos para variáveis new e old
