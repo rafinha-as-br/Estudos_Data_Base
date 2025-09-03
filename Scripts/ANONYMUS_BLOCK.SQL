@@ -11,7 +11,7 @@ EXCEPTION -- Não é necessário se você não precisar de exceptions
   Exception section
 END;
  
--- Exemplo usando OracleLiveSQL (imprimir tabuada)
+-- Exemplo usando OracleLiveSQL (imprimir tabuada )
 DECLARE 
     V_N CONSTANT NUMBER(2) := 5;
 BEGIN 
